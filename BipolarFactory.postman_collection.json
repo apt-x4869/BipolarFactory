@@ -1,0 +1,989 @@
+{
+	"info": {
+		"_postman_id": "272b6208-f666-410e-b17d-5d22ab1b0bbe",
+		"name": "BipolarFactory",
+		"description": "FLASK RESTAPI\nAuthentication And Authorization\nCRUD Application\nToken Refresh",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"admin\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/register",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					]
+				},
+				"description": "#User Registration\n\nUser is created if does not exist."
+			},
+			"response": [
+				{
+					"name": "/register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"admin\"\n}"
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/register",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 05:18:13 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"You have been Registered\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"admin\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/login",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				},
+				"description": "#User Login\n\nTakes 'username' and 'password',\nreturns 'access_token' and 'refresh_token'"
+			},
+			"response": [
+				{
+					"name": "/login (Invalid Login)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"1234\"\n}"
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/login",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "UNAUTHORIZED",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 05:40:41 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid Credential\"\n}"
+				},
+				{
+					"name": "/login (Valid Login)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"admin\"\n}"
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/login",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "570"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 05:39:36 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2Njk5NzYsIm5iZiI6MTU4NjY2OTk3NiwianRpIjoiOTUwZDZmOGMtYmUyYi00Y2ZhLTlkNTctMzU1ZmExNDYwZTk5IiwiZXhwIjoxNTg2NjcwODc2LCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MifQ.-gmbp-i9H7ipaidQspNfecoetwaN5zR4qiG919qWQmE\",\n    \"refresh_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2Njk5NzYsIm5iZiI6MTU4NjY2OTk3NiwianRpIjoiNWY2OWViNDUtYzBkMi00YzM0LWE1Y2UtNjU2YTNhMTZlNDE4IiwiZXhwIjoxNTg5MjYxOTc2LCJpZGVudGl0eSI6MSwidHlwZSI6InJlZnJlc2gifQ.ASbAhXRz2COlaK_P5AhO-_BuzhhTq_O-GHha8C_emZk\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzEwNTIsIm5iZiI6MTU4NjY3MTA1MiwianRpIjoiYTU5Njc0OGItYjMyZC00OTY5LWJiZDktYWIxNzk4MjRmNjQ4IiwiZXhwIjoxNTg2NjcxOTUyLCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MifQ.85w8EaXu9fz2dThEbDU3XkhtWm7pvy8cqZKfuaI0lxc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:5000/logout",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"logout"
+					]
+				},
+				"description": "#User Logout\n\naccess_token(jti) gets blacklisted "
+			},
+			"response": [
+				{
+					"name": "/logout",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzEwNTIsIm5iZiI6MTU4NjY3MTA1MiwianRpIjoiYTU5Njc0OGItYjMyZC00OTY5LWJiZDktYWIxNzk4MjRmNjQ4IiwiZXhwIjoxNTg2NjcxOTUyLCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MifQ.85w8EaXu9fz2dThEbDU3XkhtWm7pvy8cqZKfuaI0lxc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/logout",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 05:59:47 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"You have been successfully logged out\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzE3NDksIm5iZiI6MTU4NjY3MTc0OSwianRpIjoiNDk4ZDNiMmMtMWJjZi00MTVhLTk1OGUtOTI2MjdlODUxMjNjIiwiZXhwIjoxNTg5MjYzNzQ5LCJpZGVudGl0eSI6MSwidHlwZSI6InJlZnJlc2gifQ.In8BcQ6TUYrLqc7YwZi72iUsb9kuZDJTn8Z-Dp3Siu4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:5000/refresh",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"refresh"
+					]
+				},
+				"description": "#Refresh Token\n\nExpired access token is refreshed using refresh_token (fresh=False)"
+			},
+			"response": [
+				{
+					"name": "/refresh",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzE3NDksIm5iZiI6MTU4NjY3MTc0OSwianRpIjoiNDk4ZDNiMmMtMWJjZi00MTVhLTk1OGUtOTI2MjdlODUxMjNjIiwiZXhwIjoxNTg5MjYzNzQ5LCJpZGVudGl0eSI6MSwidHlwZSI6InJlZnJlc2gifQ.In8BcQ6TUYrLqc7YwZi72iUsb9kuZDJTn8Z-Dp3Siu4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/refresh",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"refresh"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "295"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 06:11:33 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzE4OTMsIm5iZiI6MTU4NjY3MTg5MywianRpIjoiYjI0ZDczMmItNjQxNy00NzFhLTk5ZGEtYzY1ODYxN2QwM2E2IiwiZXhwIjoxNTg2NjcyNzkzLCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.UmiV_xFHqMxaGcZlCZ1sBj2vpGgK6aDous96-uaNf3I\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/user/<user_id>",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:5000/user/2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"2"
+					]
+				},
+				"description": "#Only for Testing/Checking for md5\nWe can see user's Username and MD5 password if having Admin Privileges"
+			},
+			"response": [
+				{
+					"name": "/user/<user_id> (When User Exists in Database)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:5000/user/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "81"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 07:03:14 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": \"admin2\",\n    \"password\": \"c84258e9c39059a89ab77d846ddab909\"\n}"
+				},
+				{
+					"name": "/user/<user_id> (When User Not Found in DB)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:5000/user/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"2"
+							]
+						}
+					},
+					"status": "NOT FOUND",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 07:04:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No User Found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/user/<user_id>",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:5000/user/2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"2"
+					]
+				},
+				"description": "#testing Only\nDeleting User"
+			},
+			"response": [
+				{
+					"name": "/user/<user_id>",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:5000/user/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 07:02:08 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User has been deleted\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/book/<title>",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzU3ODQsIm5iZiI6MTU4NjY3NTc4NCwianRpIjoiNjdjYWM4YWMtY2Y4MC00MWI5LTk4NDAtYjlkMzg2NGMwY2IyIiwiZXhwIjoxNTg2Njc2Njg0LCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpc19hZG1pbiI6dHJ1ZX19.8uMRQfgG27oxTrgH8ai97avCy3p37fw_i6_DASgcHp4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"author\":\"John Cena\",\n\t\"amazon_url\": \"https://amazon.in/EkThaTiger\",\n\t\"book_genre\":\"Action\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/book/EkThaTiger",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"book",
+						"EkThaTiger"
+					]
+				},
+				"description": "#Adding Book to DB\n\nAdds Book with attributes author, amazon_url, genre"
+			},
+			"response": [
+				{
+					"name": "/book/<title>",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzcxMDYsIm5iZiI6MTU4NjY3NzEwNiwianRpIjoiNWNjZmE0NzMtOTZmNi00ODE2LThlYmItZjU3ZWNlMGExZDE5IiwiZXhwIjoxNTg2Njc4MDA2LCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpc19hZG1pbiI6dHJ1ZX19.0_PutNYwdhJ1ds-zHTZwqpREXRJHYrgL__qKv9RPwJ8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"author\":\"John Cena\",\n\t\"amazon_url\": \"https://amazon.in/EkThaTiger\",\n\t\"book_genre\":\"Action\"\n}"
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/book/EkThaTiger",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"book",
+								"EkThaTiger"
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "153"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 07:38:50 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"book_id\": 1,\n    \"title\": \"EkThaTiger\",\n    \"author\": \"John Cena\",\n    \"amazon_url\": \"https://amazon.in/EkThaTiger\",\n    \"book_genre\": \"Action\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/book/<title> ",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzU3ODQsIm5iZiI6MTU4NjY3NTc4NCwianRpIjoiNjdjYWM4YWMtY2Y4MC00MWI5LTk4NDAtYjlkMzg2NGMwY2IyIiwiZXhwIjoxNTg2Njc2Njg0LCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpc19hZG1pbiI6dHJ1ZX19.8uMRQfgG27oxTrgH8ai97avCy3p37fw_i6_DASgcHp4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"author\":\"John Cena\",\n\t\"amazon_url\": \"https://amazon.in/EkThaTiger\",\n\t\"book_genre\":\"Action\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/book/EkThaTiger",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"book",
+						"EkThaTiger"
+					]
+				},
+				"description": "#Adding Book to DB\n\nAdds Book with attributes author, amazon_url, genre"
+			},
+			"response": [
+				{
+					"name": "/book/<title> ",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzU3ODQsIm5iZiI6MTU4NjY3NTc4NCwianRpIjoiNjdjYWM4YWMtY2Y4MC00MWI5LTk4NDAtYjlkMzg2NGMwY2IyIiwiZXhwIjoxNTg2Njc2Njg0LCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpc19hZG1pbiI6dHJ1ZX19.8uMRQfgG27oxTrgH8ai97avCy3p37fw_i6_DASgcHp4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"author\":\"John Cena\",\n\t\"amazon_url\": \"https://amazon.in/EkThaTiger\",\n\t\"book_genre\":\"Action\"\n}"
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/book/EkThaTiger",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"book",
+								"EkThaTiger"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "153"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 07:18:09 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"book_id\": 1,\n    \"title\": \"EkThaTiger\",\n    \"author\": \"John Cena\",\n    \"amazon_url\": \"https://amazon.in/EkThaTiger\",\n    \"book_genre\": \"Action\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/book/<title>",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzU3ODQsIm5iZiI6MTU4NjY3NTc4NCwianRpIjoiNjdjYWM4YWMtY2Y4MC00MWI5LTk4NDAtYjlkMzg2NGMwY2IyIiwiZXhwIjoxNTg2Njc2Njg0LCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpc19hZG1pbiI6dHJ1ZX19.8uMRQfgG27oxTrgH8ai97avCy3p37fw_i6_DASgcHp4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/book/EkThaTiger",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"book",
+						"EkThaTiger"
+					]
+				},
+				"description": "#Getting Book to DB\n\nChecking Book Information"
+			},
+			"response": [
+				{
+					"name": "/book/<title>",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzU3ODQsIm5iZiI6MTU4NjY3NTc4NCwianRpIjoiNjdjYWM4YWMtY2Y4MC00MWI5LTk4NDAtYjlkMzg2NGMwY2IyIiwiZXhwIjoxNTg2Njc2Njg0LCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpc19hZG1pbiI6dHJ1ZX19.8uMRQfgG27oxTrgH8ai97avCy3p37fw_i6_DASgcHp4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/book/EkThaTiger",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"book",
+								"EkThaTiger"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "153"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 07:19:58 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"book_id\": 1,\n    \"title\": \"EkThaTiger\",\n    \"author\": \"John Cena\",\n    \"amazon_url\": \"https://amazon.in/EkThaTiger\",\n    \"book_genre\": \"Action\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/book/<title>",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzU3ODQsIm5iZiI6MTU4NjY3NTc4NCwianRpIjoiNjdjYWM4YWMtY2Y4MC00MWI5LTk4NDAtYjlkMzg2NGMwY2IyIiwiZXhwIjoxNTg2Njc2Njg0LCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpc19hZG1pbiI6dHJ1ZX19.8uMRQfgG27oxTrgH8ai97avCy3p37fw_i6_DASgcHp4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/book/EkThaTiger",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"book",
+						"EkThaTiger"
+					]
+				},
+				"description": "#Deleting Book\n\nIf Book Found Then Book gets deleted else \nError message ShowsUp"
+			},
+			"response": [
+				{
+					"name": "/book/<title>",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODY2NzU3ODQsIm5iZiI6MTU4NjY3NTc4NCwianRpIjoiNjdjYWM4YWMtY2Y4MC00MWI5LTk4NDAtYjlkMzg2NGMwY2IyIiwiZXhwIjoxNTg2Njc2Njg0LCJpZGVudGl0eSI6MSwiZnJlc2giOnRydWUsInR5cGUiOiJhY2Nlc3MiLCJ1c2VyX2NsYWltcyI6eyJpc19hZG1pbiI6dHJ1ZX19.8uMRQfgG27oxTrgH8ai97avCy3p37fw_i6_DASgcHp4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/book/EkThaTiger",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"book",
+								"EkThaTiger"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Apr 2020 07:22:07 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Book has been deleted\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7735bcc6-7733-4e1b-b555-067faad51e80",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c7956900-a010-4e5d-a678-068f88c5b617",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
