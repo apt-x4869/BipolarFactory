@@ -2,7 +2,7 @@ from db import db
 import hashlib
 
 
-class User(db.Model):
+class UserModel(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
