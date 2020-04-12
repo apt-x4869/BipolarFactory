@@ -8,7 +8,8 @@ from flask_jwt_extended import (
     jwt_required,
     get_raw_jwt,
     jwt_refresh_token_required,
-    get_jwt_identity
+    get_jwt_identity,
+    get_jwt_claims
 )
 
 from models.user import UserModel
@@ -66,3 +67,33 @@ class TokenRefresh(Resource):
         current_user = get_jwt_identity()
         new_token = create_access_token(identity=current_user,fresh=False)
         return {"access_token": new_token }, 200
+
+class User(Resource):
+    #@jwt_required
+    def get(self, user_id: int):
+        '''
+        claims = get_jwt_claims()
+        if not claims['is_admin']:
+            return {'message': 'Admin privilege required.'}, 401
+        '''
+        user = UserModel.find_by_id(user_id)
+        if not user:
+            return {"message": "No User Found"}, 404
+        return {
+            'username': user.username,
+            'password': user.password
+        }, 200
+
+    #@jwt_required
+    @classmethod
+    def delete(cls, user_id: int):
+        '''
+        claims = get_jwt_claims()
+        if not claims['is_admin']:
+            return {'message': 'Admin privilege required.'}, 401
+        '''
+        user = UserModel.find_by_id(user_id)
+        if not user:
+            return {"message": "User doesn't exist"}, 404
+        user.delete_from_db()
+        return {"message": "User has been deleted"}
