@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
+from resources.user import UserRegister
 
 from db import db
 
@@ -11,6 +12,8 @@ api = Api(app)
 
 jwt = JWTManager(app)
 
+
+api.resource(UserRegister,'/register')
 
 if __name__ == '__main__':
     db.init_app(app)
