@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
+from db import db
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'AMAN'
@@ -11,5 +12,5 @@ jwt = JWTManager(app)
 
 
 if __name__ == '__main__':
-
+    db.init_app(app)
     app.run(port=5000, debug=True)
